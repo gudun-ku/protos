@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "abeloushkin.sso.v1;ssov1";
+
+service Auth {
+    rpc Register (RegisterRequest) returns (RegisterResponse);
+    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc isAdmin (IsAdminRequest) returns (IsAdminResponse);
+}
+
+message RegisterRequest {
+    string email = 1; // email of the user to register
+    string password = 2; // password of the user to register
+}
+
+message RegisterResponse {
+    int64 user_id = 1; // id of registered user if successful registration done
+}
+
+message LoginRequest {
+    string email = 1; // email of the user
+    string password = 2; // password of the user
+    int32 app_id = 3; // id of the app from which user logs in 
+}
+
+message LoginResponse {
+    string token = 1; // Auth token of the user logged in
+}
+
+message IsAdminRequest {
+    int64 user_id = 1; // id of user that we want to check for admin rights
+}
+
+message IsAdminResponse {
+    bool is_admin = 1; // indicates whether the user is an admin
+}
