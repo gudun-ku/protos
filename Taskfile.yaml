@@ -1,4 +1,5 @@
 # See: https://taskfile.dev/api/
+# install with homebrew: $ brew install go-task
 
 version: "3"
 
